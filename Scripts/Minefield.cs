@@ -227,4 +227,21 @@ public class Minefield
         }
         return true;
     }
+
+    public int GetAt(int[] pos) {
+        int result = -2;
+        switch(dimension) {
+            case 2:
+                result = m2[pos[0]][pos[1]];
+                break;
+            case 3:
+                result = m3[pos[0]][pos[1]][pos[2]];
+                break;
+            case 4:
+                result = m4[pos[0]][pos[1]][pos[2]][pos[3]];
+                break;
+        }
+
+        return result;
+    }
 }

@@ -22,20 +22,21 @@ public class TextMaker : MonoBehaviour
 
     public GameObject GetText(Vector2 pos = new Vector2()) {
         GameObject go = new GameObject("MyText");
-        go.transform.position = new Vector3(pos.x, pos.y, 0.05f);
+        go.transform.position = new Vector3(pos.x, pos.y);
         go.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         TextMesh tm = (TextMesh)go.AddComponent<TextMesh>();
         tm.fontSize = 60;
         tm.color = new Color(0.5f, 0, 0, 1);
         tm.anchor = TextAnchor.MiddleCenter;
         tm.text = "";
+        go.GetComponent<MeshRenderer>().enabled = false;
 
         return go;
     }
 
     public void ChangeText(GameObject go, int n) {
         TextMesh tm = go.GetComponent<TextMesh>();
-        if (n != 0) {
+        if (n > 0) {
             tm.text = n.ToString();
             if (n < 13) {
                 tm.color = colorMap[n-1];
@@ -46,10 +47,6 @@ public class TextMaker : MonoBehaviour
     }
 
     public void ToggleText(GameObject go) {
-        if (go.transform.position.z > 0) {
-            go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, -0.05f);
-        } else {
-            go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0.05f);
-        }
+        go.GetComponent<MeshRenderer>().enabled = !go.GetComponent<MeshRenderer>().enabled;
     }
 }

@@ -174,7 +174,9 @@ public class TouchHandler : MonoBehaviour
         prev2 = new Vector3();
     }
 
-    public void Tap() {Debug.Log("tap");}
+    public void Tap() {
+        mf.Tap((Vector2)Extentions.GetTP());
+    }
 
     public void Hold() {
         mf.Hold((Vector2)Extentions.GetTP());
